@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 
 var Schema = mongoose.Schema;
 
-var postSchema = new Schema({
+var feedbackSchema = new Schema({
     firstName: String,
     lastName: String,
     email: String,
@@ -10,4 +10,4 @@ var postSchema = new Schema({
     date: Date
 });
 
-module.exports = mongoose.model("posts", postSchema);
+module.exports = mongoose.model("feedbacks", feedbackSchema);

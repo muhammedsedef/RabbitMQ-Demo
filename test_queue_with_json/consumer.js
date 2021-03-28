@@ -1,5 +1,5 @@
 const amqp = require('amqplib/callback_api');
-require('dotenv').config();
+require('dotenv').config({path:'../.env'});
 const data = require('../data.json');
 const queueName = process.argv[2] || 'test';
 

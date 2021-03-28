@@ -1,5 +1,5 @@
 var amqp = require('amqplib/callback_api');
-require('dotenv').config({path:'../.env'});
+require('dotenv').config({ path: '../.env' });
 const rabbitUrl = process.env.AMQP_URL;
 
 exports.sendRabbitMQ = (queueName, data) => {
@@ -11,11 +11,13 @@ exports.sendRabbitMQ = (queueName, data) => {
             if (err1) {
                 throw err1;
             }
-
             var queue = queueName;
-
             channel.assertQueue(queue, {
-                durable: true // True verilirse rabbitmq sunucu kapansa dahi kuyrukda datalar kalır,hızdan kazanmak için false(diske yazmıyor)ver 
+                /* 
+                If true is given, rabbitmq data remains in the queue even if the server is shut down, 
+                give false (not writing to disk) to gain speed. 
+                */
+                durable: true // 
             });
             channel.sendToQueue(queue, Buffer.from(data));
 

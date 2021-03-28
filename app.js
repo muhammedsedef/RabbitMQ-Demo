@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const app = express();
 require('dotenv').config();
 
-const postsRoute = require('./routes/post.route');
+const feedbacksRoute = require('./routes/feedback.route');
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
 });
 
 
-app.use('/posts', postsRoute);
+app.use('/feedback', feedbacksRoute);
 
 
 //MongoDb Connection

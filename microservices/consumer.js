@@ -13,13 +13,17 @@ function listenRabbitMQ(queueName) {
             throw err;
         }
         connection.createChannel((err1, channel) => {
-            console.log('kuyruk dinleniyor')
+            console.log(`${queueName} queue listening`)
             if (err1) {
                 throw err1;
             }
 
             channel.assertQueue(queueName, {
-                durable: true // True verilirse rabbitmq sunucu kapansa dahi kuyrukda datalar kalır,hızdan kazanmak için false(diske yazmıyor)ver 
+                /* 
+                If true is given, rabbitmq data remains in the queue even if the server is shut down, 
+                give false (not writing to disk) to gain speed. 
+                */
+                durable: true 
             });
             channel.consume(queueName, function (data) {
                 dataObject = JSON.parse(data.content.toString());
